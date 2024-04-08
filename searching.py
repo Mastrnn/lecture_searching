@@ -15,17 +15,30 @@ def read_data(file_name, field):
     """
     file_path=os.path.join(cwd_path,file_name)
     with open("sequential.json",mode="r") as file_obj:
-        allowed_keys=json.load(file_obj)
+        data=json.load(file_obj)
+    for key in data.keys():
+        if field ==key:
+            sequential_data = data[field]
+            return sequential_data
+        else:
+            return None
 
-    if field not in allowed_keys:
-        return None
 
-    return allowed_keys.get(field,None)
-
+def linear_search(search_sequence, search_number):
+    positions=[]
+    count=0
+    for i in range(len(search_sequence)):
+        if search_sequence[i]==search_number:
+            count+=1
+            positions.append(i)
+    slovnik = {"positions":positions,"count":count}
+    return slovnik
 
 def main():
     data=read_data(file_name="sequential.json", field="unordered_numbers")
     print(data)
+    search=linear_search(data, search_number=0)
+    print(search)
 
 
 if __name__ == '__main__':
