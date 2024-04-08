@@ -20,8 +20,7 @@ def read_data(file_name, field):
         if field ==key:
             sequential_data = data[field]
             return sequential_data
-        else:
-            return None
+    return None
 
 
 def linear_search(search_sequence, search_number):
@@ -34,11 +33,25 @@ def linear_search(search_sequence, search_number):
     slovnik = {"positions":positions,"count":count}
     return slovnik
 
+def pattern_search(data, vzor):
+    velikost_vzoru= len(vzor)
+    delka_data= len(data)
+    positions = []
+    count = 0
+    for i in range(delka_data-velikost_vzoru+1):
+        if data[i:i+velikost_vzoru] == vzor:
+            count += 1
+            positions.append(i)
+    slovnik = {"positions": positions, "count": count}
+    return slovnik
+
 def main():
-    data=read_data(file_name="sequential.json", field="unordered_numbers")
+    data=read_data(file_name="sequential.json", field="dna_sequence")
     print(data)
     search=linear_search(data, search_number=0)
     print(search)
+    vysledek=pattern_search(data,vzor="ATA")
+    print(vysledek)
 
 
 if __name__ == '__main__':
