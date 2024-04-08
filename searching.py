@@ -45,13 +45,25 @@ def pattern_search(data, vzor):
     slovnik = {"positions": positions, "count": count}
     return slovnik
 
+def binary_search(data,cislo):
+    indexy=[]
+    for i in range(len(data)):
+        if data[i] == cislo:
+            indexy.append(i)
+    if indexy==[]:
+        return None
+    return indexy
+
+
 def main():
-    data=read_data(file_name="sequential.json", field="dna_sequence")
+    data=read_data(file_name="sequential.json", field="ordered_numbers")
     print(data)
     search=linear_search(data, search_number=0)
     print(search)
     vysledek=pattern_search(data,vzor="ATA")
     print(vysledek)
+    binary=binary_search(data,cislo=8)
+    print(binary)
 
 
 if __name__ == '__main__':
