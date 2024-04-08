@@ -45,15 +45,18 @@ def pattern_search(data, vzor):
     slovnik = {"positions": positions, "count": count}
     return slovnik
 
-def binary_search(data,cislo):
-    indexy=[]
-    for i in range(len(data)):
-        if data[i] == cislo:
-            indexy.append(i)
-    if indexy==[]:
-        return None
-    return indexy
-
+def binary_search(numbers,cislo):
+    left = 0
+    right = len(numbers)-1
+    while left <= right:
+        mid=(left+right) // 2
+        if numbers[mid] == cislo:
+            return mid
+        elif numbers[mid] < cislo:
+            left=mid+1
+        else:
+            right = mid-1
+    return None
 
 def main():
     data=read_data(file_name="sequential.json", field="ordered_numbers")
